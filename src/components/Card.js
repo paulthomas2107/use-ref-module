@@ -1,10 +1,17 @@
-const Card = ({cardId}) => {
+import { forwardRef } from "react";
+
+const Card = ({cardId, unclickedCardIds, setUnclickedCardIds}, ref) => {
+    
+    const handleClick = () => {
+        setUnclickedCardIds(unclickedCardIds.filter(id => id !== cardId))
+    }
+    
     return (
-      <article className="card">
+      <article ref={ref} className="card" onClick={handleClick}>
         {cardId}
       </article>
     );
   }
   
-  export default Card;
+  export default forwardRef(Card);
   
